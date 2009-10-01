@@ -11,5 +11,10 @@
 #
 
 class Comment < ActiveRecord::Base
-  belongs_to :article
+  belongs_to :article 
+
+  validates_presence_of :author
+  validates_length_of :author, :in => 3..20
+  validates_presence_of :content
+  validates_length_of :content, :in => 3..500
 end
