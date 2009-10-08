@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Anime Blog - <%= h(yield(:title) || 'Untitled') %></title>
+    <%= stylesheet_link_tag 'application' %>
+  </head>
+  <body>
+    <div id="container">
+      <%- flash.each do |name, msg| -%>
+        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+      <%- end -%>
+      
+      <div id="left-container">
+        <%- if show_title? -%>
+          <h1><%=h yield(:title) %></h1>
+        <%- end -%>
+        
+        <%= yield %>
+      </div>
+
+      <div id="right-container">
+        <h1>Categories</h1>
+        <%= print_categories_menu %>
+      </div>
+
+      <br class="clear" />
+    </div>
+  </body>
+</html>

@@ -21,4 +21,11 @@ class Article < ActiveRecord::Base
   validates_length_of :content, :minimum => 4
   validates_presence_of :author
   validates_length_of :author, :in => 3..20
+  validate :must_have_category
+
+  private
+
+  def must_have_category
+    errors.add_to_base('Must have a category') if category.blank? && category_id.blank?
+  end
 end
