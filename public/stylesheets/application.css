@@ -1,7 +1,8 @@
 body {
-  background-color: #FFF;
-  font-family: Verdana, Helvetica, Arial;
+  background-color: #292929;
+  font-family: Tahoma, Verdana, Helvetica, Arial;
   font-size: 14px;
+  color: #FFFFFF;
 }
  
 a img {
@@ -9,32 +10,78 @@ a img {
 }
  
 a {
-  color: #0000FF;
+  color: #00CCFF;
+}
+
+a:hover {
+  color: #DE6A23;
 }
  
-body {
-  background-color: #4B7399;
+hr {
+  width: 95%;
 }
 
 /**************
  * CONTAINERS *
  **************/
 #container {
+  min-height: 100%;
+  height: auto;
   width: 75%;
-  margin: 0 auto;
-  background-color: #FFF;
-  padding: 20px 40px;
-  border: solid 1px black;
-  margin-top: 20px;
+  margin: 0 auto -4em;
+  background: #454545;
 }
 
 #left-container {
   float: left;
+  width: 72%;
+  padding: 0px 10px 0px;
+  background-color: #292929;
 }
 
 #right-container {
   float: right;
-  width: 200px;
+  width: 25%;
+  background: #454545;
+}
+
+#right-container h1 {
+  text-align: center;
+}
+
+#header {
+  clear: both;
+  height: 4em;
+  width: 75%;
+  margin: 20px auto 0px;
+  background: #454545;
+  text-align: center;
+  border-bottom: solid 10px #292929;
+}
+
+#header h1 {
+  line-height: 2em;
+  color: #BBBBBB
+}
+
+#footer {
+  height: 4em;
+  clear: both;
+  width: 75%;
+  margin: 0 auto;
+  color: #FFF;
+  text-align: center;
+  padding: 4px 0;
+  background: #454545;
+  border-top: solid 10px #292929;
+}
+
+#footer p {
+  color: #BBBBBB;
+}
+
+#push {
+  height: 4em;
 }
 
 /******************
@@ -54,75 +101,23 @@ body {
   background-color: #FCC;
   border: solid 1px #C66;
 }
- 
+
+/***********
+ * ARTICLE *
+ ***********/
+.article .author {
+  font-size: 10px;
+  margin: -15px 0px 0px 20px;
+}
+
+/********
+ * MISC *
+ ********/
+.right {
+  text-align: right;
+}
+
 .clear {
   clear: both;
 }
  
- 
-#articles h2 {
-  font-size: 16px;
-  margin-bottom: 2px;
-}
- 
-#articles h2 .comments {
-  font-size: 12px;
-  font-weight: normal;
-}
- 
-#articles .author {
-  font-style: italic;
-  color: #333;
-}
- 
-#comments {
-  font-size: 12px;
-  background-color: #DDD;
-  padding: 0 20px;
-  width: 325px;
-  border: solid 1px #333;
-}
- 
-.comment {
-  border-bottom: solid 1px #999;
-  margin: 15px 0;
-}
- 
-.comment .author_name {
-  font-weight: bold;
-}
- 
-.fieldWithErrors {
-  display: inline;
-}
- 
-#errorExplanation {
-  width: 400px;
-  border: 2px solid #CF0000;
-  padding: 0px;
-  padding-bottom: 12px;
-  margin-bottom: 20px;
-  background-color: #f0f0f0;
-}
- 
-#errorExplanation h2 {
-  text-align: left;
-  font-weight: bold;
-  padding: 5px 5px 5px 15px;
-  font-size: 12px;
-  margin: 0px;
-  background-color: #c00;
-  color: #fff;
-}
-#errorExplanation p {
-  color: #333;
-  margin-bottom: 0;
-  padding: 8px;
-}
-#errorExplanation ul {
-  margin: 2px 24px;
-}
-#errorExplanation ul li {
-  font-size: 12px;
-  list-style: disc;
-}

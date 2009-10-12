@@ -1,12 +1,21 @@
 <%- title 'Articles' -%>
 
-<%= link_to 'New Article', new_article_path %>
+<p class="right"><%= link_to 'New Article', new_article_path %></p>
+
+<hr/>
 
 <% @articles.each do |article| %>
-  <p><%= article.title %></p>
-  <p><%= article.content %></p>
-  <p><%= article.author %></p>
-  <p><%= article.category.name %></p>
-  <p><%= link_to 'Delete', article, :method => :delete %>
-     <%= link_to 'Edit', edit_article_path(article) %></p>
+  <div id="<%= dom_id(article) %>" class="article">
+    <h2><%= article.title %></h2>
+    <p class="author">
+      By <%= article.author %> on <%= article.created_at.to_s(:short) %>
+    </p>
+    <p><%= article.content %></p>
+    <p>Category: <%= link_to article.category.name %></p>
+    <p>
+      <%= link_to 'Delete', article, :method => :delete %>
+      <%= link_to 'Edit', edit_article_path(article) %>
+    </p>
+    <hr/>
+  </div>
 <% end %>
