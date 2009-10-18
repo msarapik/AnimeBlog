@@ -1,16 +1,33 @@
 <% form_for @article do |f| %>
   <%= f.error_messages %>
 
-  Title:<br /> <%= f.text_field :title %><br />
-  Content:<br /> <%= f.text_area :content, :size => '34 x 10' %><br />
-  Author:<br /> <%= f.text_field :author %><br />
-  Category:<br /> <%= f.select :category_id, Category.all.collect {|p| [ p.name, p.id ] } %>
+  <p>
+    <%= f.label :title, 'Title:' %><br /> 
+    <%= f.text_field :title %>
+  </p>
 
-  <%- if @article.new_record? -%>
-    <%= submit_tag 'Create' %>
-  <%- else -%>
-    <%= submit_tag 'Update' %>
-  <%- end -%>
+  <p>
+    <%= f.label :content, 'Content:' %><br /> 
+    <%= f.text_area :content, :size => '80 x 20' %>
+  </p>
+
+  <p>
+    <%= f.label :author, 'Author:' %><br /> 
+    <%= f.text_field :author %>
+  </p>
+
+  <p>
+    <%= f.label :category, 'Category:' %><br /> 
+    <%= f.select :category_id, Category.all.collect {|p| [ p.name, p.id ] }, :prompt => 'Select a category' %>
+    or create one:
+    <%= f.text_field :new_category_name %>
+
+    <%- if @article.new_record? -%>
+      <%= submit_tag 'Create' %>
+    <%- else -%>
+      <%= submit_tag 'Update' %>
+    <%- end -%>
+  </p>
 
   <%= link_to 'Back', articles_path %>
 <% end %>

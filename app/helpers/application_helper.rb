@@ -12,7 +12,10 @@ module ApplicationHelper
   def print_categories_menu
     str = '<ul id="categories">'
     Category.all.each do |cat|
-      str += '<li>' + link_to(cat.name, '#TODO') + '</li>'
+      str += '<li>' + link_to(cat.name, articles_by_category_path(cat.name)) + '<span>' 
+      str += ' ' + link_to('E', edit_category_path(cat))
+      str += ' | ' + link_to('D', category_path(cat), :method => :delete)
+      str += '</span></li>'
     end
     str += '</ul>' 
     str

@@ -49,10 +49,22 @@ class ArticlesController < ApplicationController
     if @article.destroy
       flash[:notice] = 'Article destroyed!'
     else
-      flash[:error] = 'There was an error while trying to delete the contact!'
+      flash[:error] = 'There was an error while trying to delete the article!'
     end
 
     redirect_to articles_path
+  end
+
+  def by_category
+    @articles = Article.find(:all, 
+                 :joins => 'LEFT JOIN categories ON categories.id = articles.category_id', 
+                 :select => 'articles.*', 
+                 :conditions => ['categories.name = ?', params[:category_name]])
+
+    #@category = Category.find_by_name(params[:category_name])
+    #@articles = @category.articles
+
+    render :action => 'index'
   end
 
   private

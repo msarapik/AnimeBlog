@@ -1,0 +1,18 @@
+<%- title 'Edit Category' -%>
+
+<% form_for @category do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name, 'Name:' %><br />
+    <%= f.text_field :name %>
+  </p>
+
+  </p>
+    <%= submit_tag 'Update' %>
+    <%= link_to 'Back', articles_path %>
+  </p>
+
+<%- end -%>
+
+

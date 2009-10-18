@@ -11,9 +11,9 @@
       By <%= article.author %> on <%= article.created_at.to_s(:short) %>
     </p>
     <p><%= article.content %></p>
-    <p>Category: <%= link_to article.category.name %></p>
+    <p>Category: <%= link_to article.category.name, articles_by_category_path(article.category.name) %></p>
     <p>
-      <%= link_to 'Delete', article, :method => :delete %>
+      <%= link_to 'Delete', article, :method => :delete %> |
       <%= link_to 'Edit', edit_article_path(article) %>
     </p>
     <hr/>

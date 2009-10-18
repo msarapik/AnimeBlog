@@ -61,7 +61,12 @@ hr {
 
 #header h1 {
   line-height: 2em;
-  color: #BBBBBB
+  color: #BBBBBB;
+}
+
+#header a{
+  color: #BBBBBB;
+  text-decoration: none;
 }
 
 #footer {
@@ -90,6 +95,7 @@ hr {
 #flash_notice, #flash_error {
   padding: 5px 8px;
   margin: 10px 0;
+  color: #000000;
 }
  
 #flash_notice {
@@ -121,3 +127,7 @@ hr {
   clear: both;
 }
  
+#categories span {
+  float: right;
+  margin-right: 50px;
+}
