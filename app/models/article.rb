@@ -27,6 +27,10 @@ class Article < ActiveRecord::Base
   validates_associated :category
   validate :must_have_category
 
+  def to_param
+    id.to_s + '-' + title.gsub(' ', '-')
+  end
+
   private
 
   def create_category_from_name

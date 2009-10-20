@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
+  before_filter :authorize, :except => [:index, :by_category, :show]
 
   # GET articles_path
   def index
@@ -60,10 +61,6 @@ class ArticlesController < ApplicationController
                  :joins => 'LEFT JOIN categories ON categories.id = articles.category_id', 
                  :select => 'articles.*', 
                  :conditions => ['categories.name = ?', params[:category_name]])
-
-    #@category = Category.find_by_name(params[:category_name])
-    #@articles = @category.articles
-
     render :action => 'index'
   end
 

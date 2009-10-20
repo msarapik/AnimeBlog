@@ -1,21 +1,9 @@
 <%- title 'Articles' -%>
 
-<p class="right"><%= link_to 'New Article', new_article_path %></p>
+<%- if admin? -%>
+  <p class="right"><%= link_to 'New Article', new_article_path %></p>
+<%- end -%>
 
 <hr/>
 
-<% @articles.each do |article| %>
-  <div id="<%= dom_id(article) %>" class="article">
-    <h2><%= article.title %></h2>
-    <p class="author">
-      By <%= article.author %> on <%= article.created_at.to_s(:short) %>
-    </p>
-    <p><%= article.content %></p>
-    <p>Category: <%= link_to article.category.name, articles_by_category_path(article.category.name) %></p>
-    <p>
-      <%= link_to 'Delete', article, :method => :delete %> |
-      <%= link_to 'Edit', edit_article_path(article) %>
-    </p>
-    <hr/>
-  </div>
-<% end %>
+<%= render :partial => 'article', :collection => @articles %>

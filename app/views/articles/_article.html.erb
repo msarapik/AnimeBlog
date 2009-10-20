@@ -1,0 +1,22 @@
+<div id="<%= dom_id(article) %>" class="article">
+  <%- if current_page?(:controller => 'articles') -%>
+    <h2 class="title"><%= link_to article.title, article_path(article) %></h2>
+  <%- end -%>
+
+  <p class="author">
+    By <%= article.author %> on <%= article.created_at.to_s(:short) %>
+  </p>
+
+  <p><%= article.content %></p>
+
+  <p>Category: <%= link_to article.category.name, articles_by_category_path(article.category.name) %></p>
+
+  <%- if admin? -%>
+  <p>
+  <%= link_to 'Delete', article, :method => :delete %> |
+  <%= link_to 'Edit', edit_article_path(article) %>
+  </p>
+  <%- end -%>
+
+  <hr/>
+</div>
