@@ -1,5 +1,5 @@
 <div id="<%= dom_id(article) %>" class="article">
-  <%- if current_page?(:controller => 'articles') -%>
+  <%- if current_page?(:controller => 'articles', :action => 'index') -%>
     <h2 class="title"><%= link_to article.title, article_path(article) %></h2>
   <%- end -%>
 
