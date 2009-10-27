@@ -1,7 +1,10 @@
 <div id="<%= dom_id(article) %>" class="article">
-  <%- if current_page?(:controller => 'articles', :action => 'index') -%>
+  <%- if current_page?(:controller => 'articles', :action => 'index') || 
+        current_page?(:controller => 'articles', :action => 'by_category', :category_name => article.category.name) -%>
     <h2 class="title"><%= link_to article.title, article_path(article) %></h2>
   <%- end -%>
+
+  <br />
 
   <p class="author">
     By <%= article.author %> on <%= article.created_at.to_s(:short) %>
@@ -10,13 +13,14 @@
   <p><%= article.content %></p>
 
   <p>Category: <%= link_to article.category.name, articles_by_category_path(article.category.name) %></p>
+  <p>Comments (<%= link_to article.comments.count, article_path(article, :anchor => 'comments') %>)</p>
 
   <%- if admin? -%>
-  <p>
-  <%= link_to 'Delete', article, :method => :delete %> |
-  <%= link_to 'Edit', edit_article_path(article) %>
-  </p>
+    <p>
+      <%= link_to 'Delete', article, :method => :delete %> |
+      <%= link_to 'Edit', edit_article_path(article) %>
+    </p>
   <%- end -%>
 
-  <hr/>
+  <hr />
 </div>

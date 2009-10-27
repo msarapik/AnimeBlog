@@ -1,0 +1,13 @@
+<div id="<%= dom_id(comment) %>" class="comment">
+  <p class="author">
+    By <span class="commentauthor"><%= comment.author %></span> on <%= comment.created_at.to_s(:short) %>
+  </p>
+
+  <p><%= comment.content %></p>
+
+  <%- if admin? -%>
+    <p>
+      <%= link_to 'Delete', comment, :method => :delete %>
+    </p>
+  <%- end -%>
+</div>

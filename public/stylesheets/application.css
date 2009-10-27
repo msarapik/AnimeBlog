@@ -116,6 +116,20 @@ hr {
   margin: -15px 0px 0px 20px;
 }
 
+/************
+ * COMMENTS *
+ ************/
+.comment .author .commentauthor {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.new_comment .error {
+  color: red;
+  margin: 0px 0px 0px 5px;
+  clear: left;
+}
+
 /********
  * MISC *
  ********/
@@ -130,4 +144,8 @@ hr {
 #categories span {
   float: right;
   margin-right: 50px;
+}
+
+input, textarea {
+  background-color: #CCC;
 }

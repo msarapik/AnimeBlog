@@ -17,4 +17,5 @@ class Comment < ActiveRecord::Base
   validates_length_of :author, :in => 3..20
   validates_presence_of :content
   validates_length_of :content, :in => 3..500
+  validates_associated :article
 end

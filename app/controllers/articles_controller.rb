@@ -10,6 +10,7 @@ class ArticlesController < ApplicationController
   # GET article_path(:id => 1)
   def show
     @article = Article.find(params[:id])
+    @comments = @article.comments
   end
 
   # GET new_article_path
