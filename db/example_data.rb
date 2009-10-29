@@ -13,6 +13,6 @@ module FixtureReplacement
   end
 
   attributes_for :category do |c|
-    c.name = random_string(20)
+    c.name = random_string(12)
   end
 end

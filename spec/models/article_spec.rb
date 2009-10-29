@@ -14,7 +14,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe Article do
-  before do
+  before(:each) do
     @article = new_article
   end
   

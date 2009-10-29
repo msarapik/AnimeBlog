@@ -3,6 +3,10 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 describe ArticlesController do
   integrate_views
 
+  before(:each) do
+    log_in_as_admin
+  end
+
   before(:all) do
     Article.delete_all
     @article = create_article

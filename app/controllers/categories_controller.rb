@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
+  before_filter :authorize
 
   # GET edit_category_path(:id => 1)
   def edit

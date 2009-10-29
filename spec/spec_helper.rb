@@ -20,6 +20,10 @@ Spec::Runner.configure do |config|
   # Fixture Replacement
   config.include FixtureReplacement
 
+  config.after(:each) do
+    log_out
+  end
+
   # == Mock Framework
   #
   # RSpec uses it's own mocking framework by default. If you prefer to
@@ -32,4 +36,12 @@ Spec::Runner.configure do |config|
   # == Notes
   #
   # For more information take a look at Spec::Runner::Configuration and Spec::Runner
+
+  def log_in_as_admin
+    controller.stub!(:admin?).and_return(true)
+  end
+
+  def log_out
+    controller.stub!(:admin?).and_return(false) if defined?(controller)
+  end
 end

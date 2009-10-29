@@ -13,8 +13,10 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe Comment do
-  before do
+  before(:all) do
+    Comment.delete_all
     @comment = new_comment
+    @article = new_article
   end
 
   it 'should be valid' do
