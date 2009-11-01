@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_filter :authorize, :except => :create
 
   # POST comment_path
   def create
@@ -14,12 +15,8 @@ class CommentsController < ApplicationController
   # DELETE comment_path(:id => 1)
   def destroy
     @comment = Comment.find(params[:id])
-    if @comment.destroy
-      flash[:notice] = 'Comment destroyed!'
-    else
-      flash[:error] = 'There was an error while trying to delete the comment!'
-    end
-
+    @comment.destroy
+    flash[:notice] = 'Comment destroyed!'
     redirect_to @comment.article
   end
 end

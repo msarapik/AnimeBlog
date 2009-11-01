@@ -1,5 +1,4 @@
 class ArticlesController < ApplicationController
-  rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
   before_filter :authorize, :except => [:index, :by_category, :show]
 
   # GET articles_path
@@ -48,12 +47,8 @@ class ArticlesController < ApplicationController
   # DELETE article_path(:id => 1)
   def destroy
     @article = Article.find(params[:id])
-    if @article.destroy
-      flash[:notice] = 'Article destroyed!'
-    else
-      flash[:error] = 'There was an error while trying to delete the article!'
-    end
-
+    @article.destroy
+    flash[:notice] = 'Article destroyed!'
     redirect_to articles_path
   end
 
@@ -63,12 +58,5 @@ class ArticlesController < ApplicationController
                  :select => 'articles.*', 
                  :conditions => ['categories.name = ?', params[:category_name]])
     render :action => 'index'
-  end
-
-  private
-
-  def record_not_found
-    flash[:error] = 'Record not found!'
-    redirect_to articles_path
   end
 end

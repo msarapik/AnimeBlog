@@ -1,10 +1,23 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe SessionsController do
-
-  #Delete this example and add some real ones
-  it "should use SessionsController" do
-    controller.should be_an_instance_of(SessionsController)
+  it 'should create a new session' do
+    controller.stub!(:admin?).and_return(true)
+    get :create
+    flash[:notice].should_not be_blank
+    response.should redirect_to(root_path)
   end
 
+  it 'should not create a new session' do
+    controller.stub!(:admin?).and_return(false)
+    get :create
+    flash[:error].should_not be_blank
+    response.should redirect_to(new_session_path)
+  end
+
+  it 'should end a session' do
+    get :destroy
+    flash[:notice].should_not be_blank
+    response.should redirect_to(root_path)
+  end
 end

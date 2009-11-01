@@ -14,7 +14,7 @@ describe Category do
   end
 
   describe 'name' do
-    it 'should not be valid if the name exceeds 20 characters' do
+    it 'should not be valid if the name exceeds 14 characters' do
       @category.name = 'a' * 30
       @category.should_not be_valid
     end

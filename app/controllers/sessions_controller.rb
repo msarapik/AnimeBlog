@@ -1,8 +1,14 @@
 class SessionsController < ApplicationController
   def create
     session[:password] = params[:password]
-    flash[:notice] = 'Successfully logged in'
-    redirect_to root_path
+
+    if admin?
+      flash[:notice] = 'Successfully logged in'
+      redirect_to root_path
+    else
+      flash[:error] = 'Invalid password'
+      redirect_to new_session_path
+    end
   end
 
   def destroy

@@ -19,6 +19,18 @@ describe ArticlesController do
     response.should be_success
   end
 
+  it 'should show an article' do
+    get :show, :id => @article.id
+    @article.should == assigns(:article)
+    response.should be_success
+  end
+
+  it 'should display the record not found error' do
+    get :show, :id => 'not found'
+    flash[:error].should_not be_blank
+    response.should redirect_to(root_path)
+  end
+
   it 'should show a new article form' do
     get :new
     assigns(:article).should be_new_record
@@ -75,12 +87,17 @@ describe ArticlesController do
     response.should redirect_to(articles_path)
   end
 
-  it 'should not destroy an article' do
+  it 'should not destroy an article when not logged in' do
+    log_out
     lambda {
-      delete :destroy, :id => 'no such id'
+      delete :destroy, :id => @article.id
     }.should_not change(Article, :count)
     flash[:error].should_not be_blank
-    response.should redirect_to(articles_path)
+    response.should redirect_to(root_path)
   end
 
+  it 'should display articles by category' do
+    get :by_category, :category_name => @category.name
+    response.should render_template(:index)
+  end
 end
