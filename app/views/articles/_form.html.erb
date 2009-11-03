@@ -12,6 +12,11 @@
   </p>
 
   <p>
+    <%= f.label :tag_names, 'Tag names:' %><br /> 
+    <%= f.text_field :tag_names, :value => @article.tag_names.join(' ') %>
+  </p>
+
+  <p>
     <%= f.label :author, 'Author:' %><br /> 
     <%= f.text_field :author %>
   </p>

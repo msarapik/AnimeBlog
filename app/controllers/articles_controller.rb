@@ -59,4 +59,10 @@ class ArticlesController < ApplicationController
                  :conditions => ['categories.name = ?', params[:category_name]])
     render :action => 'index'
   end
+
+  def by_tag
+    @tag = Tag.find_by_name(params[:name])
+    @articles = @tag.articles
+    render :action => 'index'
+  end
 end

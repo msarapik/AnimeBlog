@@ -13,10 +13,15 @@
 
 class Article < ActiveRecord::Base
   belongs_to :category
+  has_many :tags, :through => :taggings
   has_many :comments, :dependent => :destroy
+  has_many :taggings, :dependent => :destroy
 
   attr_accessor :new_category_name
   before_save :create_category_from_name
+
+  attr_writer :tag_names
+  after_save :assign_tags
 
   validates_presence_of :title
   validates_length_of :title, :in => 3..255
@@ -31,7 +36,19 @@ class Article < ActiveRecord::Base
     id.to_s + '-' + title.gsub(' ', '-')
   end
 
+  def tag_names
+    @tag_names || tags.map(&:name)
+  end
+
   private
+
+  def assign_tags
+    if @tag_names
+      self.tags = @tag_names.split(/\s+/).map do |name|
+        Tag.find_or_create_by_name(name)
+      end
+    end
+  end
 
   def create_category_from_name
     return if new_category_name.blank?
