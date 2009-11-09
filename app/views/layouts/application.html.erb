@@ -32,7 +32,7 @@
         <div id="tags-cloud-container">
           <h2>Tags</h2>
 
-          <%- tag_cloud(Tag.tags_with_articles, %w(c1 c2 c3)) do |tagg, css_class| -%>
+          <%- tag_cloud(Tag.all_with_articles_size, %w(c1 c2 c3)) do |tagg, css_class| -%>
             <%= link_to tagg, articles_by_tag_path(tagg), :class => css_class %>
           <%- end -%>
         </div>

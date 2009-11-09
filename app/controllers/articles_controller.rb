@@ -52,6 +52,11 @@ class ArticlesController < ApplicationController
     redirect_to articles_path
   end
 
+  def by_category
+    @articles = Article.all_by_category(params[:category_name])
+    render :action => 'index'
+  end
+
   def by_tag
     @tag = Tag.find_by_name(params[:name])
     @articles = @tag.articles

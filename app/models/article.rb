@@ -32,20 +32,16 @@ class Article < ActiveRecord::Base
   validates_associated :category
   validate :must_have_category
 
+  named_scope :all_by_category, lambda { |category_name| {
+              :joins => :category,
+              :conditions => [ 'categories.name = ?', category_name ] } }
+
   def to_param
     id.to_s + '-' + title.gsub(' ', '-')
   end
 
   def tag_names
     @tag_names || tags.map(&:name)
-  end
-
-  def by_category
-    @articles = Article.find(:all, 
-                 :joins => 'LEFT JOIN categories ON categories.id = articles.category_id', 
-                 :select => 'articles.*', 
-                 :conditions => ['categories.name = ?', params[:category_name]])
-    render :action => 'index'
   end
 
   private
