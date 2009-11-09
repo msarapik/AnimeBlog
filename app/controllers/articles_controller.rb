@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_filter :authorize, :except => [:index, :by_category, :show]
+  before_filter :authorize, :except => [:index, :show, :by_category, :by_tag]
 
   # GET articles_path
   def index
@@ -50,14 +50,6 @@ class ArticlesController < ApplicationController
     @article.destroy
     flash[:notice] = 'Article destroyed!'
     redirect_to articles_path
-  end
-
-  def by_category
-    @articles = Article.find(:all, 
-                 :joins => 'LEFT JOIN categories ON categories.id = articles.category_id', 
-                 :select => 'articles.*', 
-                 :conditions => ['categories.name = ?', params[:category_name]])
-    render :action => 'index'
   end
 
   def by_tag

@@ -95,9 +95,4 @@ describe ArticlesController do
     flash[:error].should_not be_blank
     response.should redirect_to(root_path)
   end
-
-  it 'should display articles by category' do
-    get :by_category, :category_name => @category.name
-    response.should render_template(:index)
-  end
 end

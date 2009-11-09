@@ -22,4 +22,25 @@ module ApplicationHelper
     str += '</ul>' 
     str
   end
+
+  def tag_cloud(tags, classes)
+    tag_hash = {}
+
+    tags.each do |tagg|
+      nr_of_articles = tagg.size.to_i
+      tag_hash[tagg] = nr_of_articles
+    end
+
+    max, min = 0, 0
+    tag_hash.each do |tagg, size|
+      max = size if size > max
+      min = size if size < min
+    end
+
+    divisor = ((max - min) / classes.size) + 1
+
+    tag_hash.each do |tagg, size|
+      yield tagg.name, classes[(size - min) / divisor]
+    end
+  end
 end

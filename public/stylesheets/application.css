@@ -49,6 +49,10 @@ hr {
   text-align: center;
 }
 
+#right-container h2 {
+  text-align: center;
+}
+
 #header {
   clear: both;
   height: 4em;
@@ -149,3 +153,7 @@ hr {
 input, textarea {
   background-color: #CCC;
 }
+
+#tags-cloud-container a.c1 { font-size: 11px; }
+#tags-cloud-container a.c2 { font-size: 15px; }
+#tags-cloud-container a.c3 { font-size: 17px; }

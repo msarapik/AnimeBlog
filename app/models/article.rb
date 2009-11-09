@@ -40,6 +40,14 @@ class Article < ActiveRecord::Base
     @tag_names || tags.map(&:name)
   end
 
+  def by_category
+    @articles = Article.find(:all, 
+                 :joins => 'LEFT JOIN categories ON categories.id = articles.category_id', 
+                 :select => 'articles.*', 
+                 :conditions => ['categories.name = ?', params[:category_name]])
+    render :action => 'index'
+  end
+
   private
 
   def assign_tags
