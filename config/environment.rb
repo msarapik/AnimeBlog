@@ -13,6 +13,8 @@ Rails::Initializer.run do |config|
 
   # Add additional load paths for your own custom dirs
   # config.load_paths += %W( #{RAILS_ROOT}/extras )
+  
+  config.load_paths << "#{RAILS_ROOT}/app/sweepers"
 
   # Specify gems that this application depends on and have them installed with rake gems:install
   config.gem 'rspec', :lib => false
@@ -29,6 +31,8 @@ Rails::Initializer.run do |config|
 
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
+  
+  config.active_record.observers = :comment_observer
 
   # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
   # Run "rake -D time" for a list of tasks for finding time zone names.

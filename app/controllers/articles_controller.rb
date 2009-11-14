@@ -1,6 +1,8 @@
 class ArticlesController < ApplicationController
   before_filter :authorize, :except => [:index, :show, :by_category, :by_tag]
 
+  cache_sweeper :category_sweeper, :only => [:create, :update, :destroy]
+
   # GET articles_path
   def index
     @articles = Article.all

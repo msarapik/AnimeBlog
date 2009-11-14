@@ -27,7 +27,13 @@
       <div id="right-container">
         <h1>Categories</h1>
 
-        <%= print_categories_menu %>
+        <%- if admin? -%>
+          <%= print_categories_menu %>
+        <%- else -%>
+          <%- cache('all_categories_cached') do -%>
+            <%= print_categories_menu %>
+          <% end %>
+        <%- end -%>
 
         <div id="tags-cloud-container">
           <h2>Tags</h2>

@@ -1,6 +1,8 @@
 class CategoriesController < ApplicationController
   before_filter :authorize
 
+  cache_sweeper :category_sweeper, :only => [:update, :destroy]
+
   # GET edit_category_path(:id => 1)
   def edit
     @category = Category.find(params[:id])
