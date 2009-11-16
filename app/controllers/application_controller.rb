@@ -19,8 +19,8 @@ class ApplicationController < ActionController::Base
   end
 
   def admin?
-    @password_file ||= YAML.load_file("#{RAILS_ROOT}/config/password.yml")
-    session[:password] == @password_file[:pw]
+    #@password_file ||= YAML.load_file("#{RAILS_ROOT}/config/password.yml")
+    session[:password] == AppConfig[:password]#@password_file[:pw]
   end
 
   def record_not_found

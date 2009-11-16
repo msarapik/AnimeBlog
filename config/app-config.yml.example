@@ -1,0 +1,13 @@
+development:
+  password: dev-pass
+staging:
+  password: dev-pass
+  smtp:
+    address: todo.com
+    port: 25
+  sender:
+    address: todo@todo.com
+  receiver: 
+    address: todo@todo.com
+production:
+  password: prod-pass
